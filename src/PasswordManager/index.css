@@ -1,0 +1,179 @@
+.bg-container {
+  background-color: #9ba9eb;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 50px 10px 50px 10px;
+}
+.main-container {
+  width: 80%;
+}
+.app-logo {
+  width: 200px;
+  margin-bottom: 20px;
+}
+.form-con {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: space-between;
+  background-color: #5763a5;
+  padding: 10px 40px 10px 40px;
+  border-radius: 10px;
+}
+.passwd-manager {
+  width: 400px;
+}
+.form {
+  background-color: #454f84;
+  border-radius: 10px;
+  width: 400px;
+  padding: 30px;
+}
+.add-new-passwd {
+  font-family: 'Roboto';
+  font-size: 20px;
+  color: #f8fafc;
+}
+.input-con {
+  display: flex;
+  border-radius: 2px;
+  align-items: center;
+  background-color: #f8fafc;
+  height: 40px;
+  margin-bottom: 20px;
+}
+.logo-img-con {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+}
+.website-logo {
+  width: 20px;
+  height: 20px;
+}
+.website-txt {
+  width: 100%;
+  height: 40px;
+  border-radius: 2px;
+  border: none;
+  padding: 10px;
+  border-left: 1px solid #94a3b8;
+  outline: none;
+}
+
+.btn-con {
+  text-align: right;
+}
+.add-btn {
+  background-color: #0b69ff;
+  color: #ffffff;
+  font-family: 'Roboto';
+  font-weight: 600;
+  border: none;
+  border-radius: 4px;
+  width: 80px;
+  height: 30px;
+  cursor: pointer;
+}
+.passwd-con {
+  background-color: #5763a5;
+  padding: 10px 40px 40px 40px;
+  margin-top: 20px;
+  border-radius: 10px;
+}
+
+.pass-heading-search-con {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.pass-heading-con {
+  display: flex;
+  align-items: center;
+}
+
+.pass-heading {
+  font-family: 'Roboto';
+  color: #ffffff;
+  font-size: 25px;
+}
+.pass-num {
+  font-family: 'Roboto';
+  color: #ffffff;
+  border: 1px solid #ffffff;
+  margin-left: 20px;
+  width: 20px;
+  text-align: center;
+}
+.search-con {
+  display: flex;
+  align-items: center;
+  background-color: #ffffff;
+  height: 30px;
+  width: 300px;
+}
+.search-img-con {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+}
+.search-img {
+  width: 20px;
+  height: 20px;
+}
+.search-input {
+  width: 100%;
+  height: 30px;
+  outline: none;
+  border: none;
+  padding: 10px;
+
+  border-left: 1px solid #94a3b8;
+}
+
+.hr-line {
+  color: #b6c3ca;
+  font-size: 30px;
+}
+
+.checkbox-pass-con {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.checkbox-con {
+  display: flex;
+  align-items: center;
+}
+.chk {
+  width: 15px;
+  height: 15px;
+  margin-right: 10px;
+}
+.show-passwd-heading {
+  font-family: 'Roboto';
+  font-size: 15px;
+  color: #ffffff;
+}
+
+.no-passwd-con {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.no-passwd-img {
+  width: 400px;
+}
+
+.no-passwds {
+  font-family: 'Roboto';
+  font-size: 20px;
+  color: #ffffff;
+}
