@@ -1,4 +1,5 @@
 import {Component} from 'react'
+import {v4 as uuidv4} from 'uuid'
 import './index.css'
 
 class PasswordManager extends Component {
@@ -35,6 +36,7 @@ class PasswordManager extends Component {
         website,
         username,
         password,
+        id: uuidv4(),
       }
       this.setState(prevState => ({
         details: [...prevState.details, details],
@@ -47,7 +49,42 @@ class PasswordManager extends Component {
 
   render() {
     const {username, password, website, details} = this.state
-    console.log(details)
+    console.log(username, password, website)
+    const noPass = (
+      <div className="no-passwd-con">
+        <img
+          src="https://assets.ccbp.in/frontend/react-js/no-passwords-img.png"
+          alt="no passwords"
+          className="no-passwd-img"
+        />
+        <h1 className="no-passwds">No Passwords</h1>
+      </div>
+    )
+    const pass = (
+      <ul className="ul-con">
+        {details.map(each => (
+          <li className="con1" key={each.id}>
+            <div className="con3">
+              <h1 className="con1-heading">{each.username[0]}</h1>
+              <div className="con2">
+                <p className="con2-website">{each.website}</p>
+                <p className="con2-username">{each.username}</p>
+                <p className="con2-password">{each.password}</p>
+              </div>
+            </div>
+            <button type="button" className="delete-btn">
+              <img
+                src="https://assets.ccbp.in/frontend/react-js/password-manager-delete-img.png"
+                alt="delete"
+                className="delete"
+              />
+            </button>
+          </li>
+        ))}
+      </ul>
+    )
+    console.log(details.length)
+    const res = details.length === 0 ? noPass : pass
     return (
       <div className="bg-container">
         <div className="main-container">
@@ -149,14 +186,7 @@ class PasswordManager extends Component {
                 </label>
               </div>
             </div>
-            <div className="no-passwd-con">
-              <img
-                src="https://assets.ccbp.in/frontend/react-js/no-passwords-img.png"
-                alt="no passwords"
-                className="no-passwd-img"
-              />
-              <h1 className="no-passwds">No Passwords</h1>
-            </div>
+            {res}
           </div>
         </div>
       </div>
