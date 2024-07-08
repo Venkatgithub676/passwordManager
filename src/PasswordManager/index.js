@@ -2,7 +2,52 @@ import {Component} from 'react'
 import './index.css'
 
 class PasswordManager extends Component {
+  state = {website: '', username: '', password: '', details: []}
+
+  onChangeUsername = event => {
+    this.setState({username: event.target.value})
+  }
+
+  onChangePassword = event => {
+    this.setState({password: event.target.value})
+  }
+
+  onChangeWebsite = event => {
+    this.setState({website: event.target.value})
+  }
+
+  onSubmitForm = event => {
+    event.preventDefault()
+    const {website, username, password} = this.state
+
+    const a = username.length === 0
+    const b = password.length === 0
+    const c = website.length === 0
+
+    if (a) {
+      alert('Enter Username')
+    } else if (b) {
+      alert('Enter Password')
+    } else if (c) {
+      alert('Enter Username')
+    } else {
+      const details = {
+        website,
+        username,
+        password,
+      }
+      this.setState(prevState => ({
+        details: [...prevState.details, details],
+        website: '',
+        username: '',
+        password: '',
+      }))
+    }
+  }
+
   render() {
+    const {username, password, website, details} = this.state
+    console.log(details)
     return (
       <div className="bg-container">
         <div className="main-container">
@@ -26,6 +71,8 @@ class PasswordManager extends Component {
                   placeholder="Enter Website"
                   type="text"
                   className="website-txt"
+                  onChange={this.onChangeWebsite}
+                  value={website}
                 />
               </div>
               <div className="input-con">
@@ -40,6 +87,8 @@ class PasswordManager extends Component {
                   placeholder="Enter Username"
                   type="text"
                   className="website-txt"
+                  onChange={this.onChangeUsername}
+                  value={username}
                 />
               </div>
               <div className="input-con">
@@ -54,6 +103,8 @@ class PasswordManager extends Component {
                   placeholder="Enter Password"
                   type="text"
                   className="website-txt"
+                  onChange={this.onChangePassword}
+                  value={password}
                 />
               </div>
               <div className="btn-con">
