@@ -3,7 +3,14 @@ import {v4 as uuidv4} from 'uuid'
 import './index.css'
 
 class PasswordManager extends Component {
-  state = {website: '', username: '', password: '', details: []}
+  state = {
+    website: '',
+    username: '',
+    password: '',
+    details: [],
+    checkBox: false,
+    search: '',
+  }
 
   onChangeUsername = event => {
     this.setState({username: event.target.value})
@@ -47,9 +54,26 @@ class PasswordManager extends Component {
     }
   }
 
+  onChangeSearch = event => {
+    this.setState({search: event.target.value})
+  }
+
+  clickDelete = id => {
+    this.setState(prevState => ({
+      details: [...prevState.details.filter(each => each.id !== id)],
+    }))
+  }
+
+  onClickChkbox = () => {
+    this.setState(prevState => ({checkBox: !prevState.checkBox}))
+  }
+
   render() {
-    const {username, password, website, details} = this.state
+    const {username, password, website, details, checkBox, search} = this.state
     console.log(username, password, website)
+    const res1 = details.filter(each =>
+      each.website.toLowerCase().includes(search.toLowerCase()),
+    )
     const noPass = (
       <div className="no-passwd-con">
         <img
@@ -60,31 +84,50 @@ class PasswordManager extends Component {
         <h1 className="no-passwds">No Passwords</h1>
       </div>
     )
+
     const pass = (
       <ul className="ul-con">
-        {details.map(each => (
-          <li className="con1" key={each.id}>
-            <div className="con3">
-              <h1 className="con1-heading">{each.username[0]}</h1>
-              <div className="con2">
-                <p className="con2-website">{each.website}</p>
-                <p className="con2-username">{each.username}</p>
-                <p className="con2-password">{each.password}</p>
+        {res1.map(each => {
+          const onClickDelete = () => {
+            this.clickDelete(each.id)
+          }
+          const starImg = (
+            <img
+              src="https://assets.ccbp.in/frontend/react-js/password-manager-stars-img.png"
+              alt="stars"
+              className="stars"
+            />
+          )
+          const password1 = <p className="con2-password">{each.password}</p>
+          const check = checkBox ? starImg : password1
+          return (
+            <li className="con1" key={each.id}>
+              <div className="con3">
+                <h1 className="con1-heading">{each.username[0]}</h1>
+                <div className="con2">
+                  <p className="con2-website">{each.website}</p>
+                  <p className="con2-username">{each.username}</p>
+                  {check}
+                </div>
               </div>
-            </div>
-            <button type="button" className="delete-btn">
-              <img
-                src="https://assets.ccbp.in/frontend/react-js/password-manager-delete-img.png"
-                alt="delete"
-                className="delete"
-              />
-            </button>
-          </li>
-        ))}
+              <button
+                type="button"
+                className="delete-btn"
+                onClick={onClickDelete}
+              >
+                <img
+                  src="https://assets.ccbp.in/frontend/react-js/password-manager-delete-img.png"
+                  alt="delete"
+                  className="delete"
+                />
+              </button>
+            </li>
+          )
+        })}
       </ul>
     )
     console.log(details.length)
-    const res = details.length === 0 ? noPass : pass
+    const res = details.length === 0 || res1.length === 0 ? noPass : pass
     return (
       <div className="bg-container">
         <div className="main-container">
@@ -174,13 +217,19 @@ class PasswordManager extends Component {
                   type="text"
                   className="search-input"
                   placeholder="Search"
+                  onChange={this.onChangeSearch}
                 />
               </div>
             </div>
             <hr className="hr-line" />
             <div className="checkbox-pass-con">
               <div className="checkbox-con">
-                <input className="chk" id="chkBox" type="checkbox" />
+                <input
+                  className="chk"
+                  onClick={this.onClickChkbox}
+                  id="chkBox"
+                  type="checkbox"
+                />
                 <label className="show-passwd-heading" htmlFor="chkBox">
                   Show Passwords
                 </label>

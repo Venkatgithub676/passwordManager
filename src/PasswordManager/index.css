@@ -188,7 +188,7 @@
 .con1 {
   display: flex;
   align-items: center;
-  width: 170px;
+  width: 250px;
   justify-content: space-between;
   border: 1px solid #b6c3ca;
   padding: 10px;
@@ -209,7 +209,7 @@
 }
 .con2-website {
   font-family: 'Roboto';
-  font-size: 15px;
+  font-size: 20px;
   color: #ffffff;
   margin-bottom: 5px;
   margin-top: 5px;
@@ -217,7 +217,7 @@
 }
 .con2-username {
   font-family: 'Roboto';
-  font-size: 15px;
+  font-size: 20px;
   color: #ffffff;
   margin-bottom: 5px;
   margin-top: 5px;
@@ -225,7 +225,7 @@
 }
 .con2-password {
   font-family: 'Roboto';
-  font-size: 15px;
+  font-size: 20px;
   color: #ffffff;
   margin-bottom: 5px;
   margin-top: 5px;
@@ -239,4 +239,8 @@
 .delete {
   width: 20px;
   height: 20px;
+}
+
+.stars {
+  width: 120px;
 }
