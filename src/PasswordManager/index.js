@@ -1,5 +1,6 @@
 import {Component} from 'react'
 import {v4 as uuidv4} from 'uuid'
+import PasswordItem from '../PasswordItem'
 import './index.css'
 
 class PasswordManager extends Component {
@@ -27,6 +28,16 @@ class PasswordManager extends Component {
   onSubmitForm = event => {
     event.preventDefault()
     const {website, username, password} = this.state
+    const d = [
+      'green',
+      'sky-blue',
+      'light-blue',
+      'brown',
+      'thick-orange',
+      'orange',
+    ]
+
+    const random = Math.floor(Math.random() * d.length)
 
     const a = username.length === 0
     const b = password.length === 0
@@ -44,6 +55,7 @@ class PasswordManager extends Component {
         username,
         password,
         id: uuidv4(),
+        bgColor: d[random],
       }
       this.setState(prevState => ({
         details: [...prevState.details, details],
@@ -81,52 +93,21 @@ class PasswordManager extends Component {
           alt="no passwords"
           className="no-passwd-img"
         />
-        <h1 className="no-passwds">No Passwords</h1>
+        <p className="no-passwds">No Passwords</p>
       </div>
     )
-
     const pass = (
       <ul className="ul-con">
-        {res1.map(each => {
-          const onClickDelete = () => {
-            this.clickDelete(each.id)
-          }
-          const starImg = (
-            <img
-              src="https://assets.ccbp.in/frontend/react-js/password-manager-stars-img.png"
-              alt="stars"
-              className="stars"
-            />
-          )
-          const password1 = <p className="con2-password">{each.password}</p>
-          const check = checkBox ? starImg : password1
-          return (
-            <li className="con1" key={each.id}>
-              <div className="con3">
-                <h1 className="con1-heading">{each.username[0]}</h1>
-                <div className="con2">
-                  <p className="con2-website">{each.website}</p>
-                  <p className="con2-username">{each.username}</p>
-                  {check}
-                </div>
-              </div>
-              <button
-                type="button"
-                className="delete-btn"
-                onClick={onClickDelete}
-              >
-                <img
-                  src="https://assets.ccbp.in/frontend/react-js/password-manager-delete-img.png"
-                  alt="delete"
-                  className="delete"
-                />
-              </button>
-            </li>
-          )
-        })}
+        {res1.map(each => (
+          <PasswordItem
+            each={each}
+            checkBox={checkBox}
+            clickDelete={this.clickDelete}
+            key={each.id}
+          />
+        ))}
       </ul>
     )
-    console.log(details.length)
     const res = details.length === 0 || res1.length === 0 ? noPass : pass
     return (
       <div className="bg-container">
@@ -159,7 +140,7 @@ class PasswordManager extends Component {
                 <div className="logo-img-con">
                   <img
                     src="https://assets.ccbp.in/frontend/react-js/password-manager-username-img.png"
-                    alt="website"
+                    alt="username"
                     className="website-logo"
                   />
                 </div>
@@ -175,13 +156,13 @@ class PasswordManager extends Component {
                 <div className="logo-img-con">
                   <img
                     src="https://assets.ccbp.in/frontend/react-js/password-manager-password-img.png"
-                    alt="website"
+                    alt="password"
                     className="website-logo"
                   />
                 </div>
                 <input
                   placeholder="Enter Password"
-                  type="text"
+                  type="password"
                   className="website-txt"
                   onChange={this.onChangePassword}
                   value={password}
@@ -203,7 +184,7 @@ class PasswordManager extends Component {
             <div className="pass-heading-search-con">
               <div className="pass-heading-con">
                 <h1 className="pass-heading">Your Passwords</h1>
-                <p className="pass-num">0</p>
+                <p className="pass-num">{details.length}</p>
               </div>
               <div className="search-con">
                 <div className="search-img-con">
@@ -214,7 +195,7 @@ class PasswordManager extends Component {
                   />
                 </div>
                 <input
-                  type="text"
+                  type="search"
                   className="search-input"
                   placeholder="Search"
                   onChange={this.onChangeSearch}
